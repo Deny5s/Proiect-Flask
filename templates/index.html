@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manager Evenimente</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index_style.css') }}">
+</head>
+<body>
+
+    <!-- Meniu -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <h1>Manager Evenimente</h1>
+        </div>
+        <div class="nav-right">
+            {% if session.get('username') %}
+                <span>Bun venit, {{ session['username'] }}</span>
+                {% if session.get('rol') == 'admin' %}
+                    <a href="{{ url_for('adauga_eveniment') }}" class="btn-add">Adauga eveniment</a>
+                {% endif %}
+                <a href="{{ url_for('logout') }}" class="btn-logout">Logout</a>
+            {% else %}
+                <a href="{{ url_for('login') }}" class="btn-login">Login</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>Lista evenimentelor</h2>
+
+        {% for e in evenimente %}
+        <div class="event-card">
+            <!-- Imagine eveniment -->
+            <img src="{{ e['poza'] }}" alt="Imagine" class="event-image">
+            
+            <!-- Detalii eveniment -->
+            <div class="event-details">
+                <h2>{{ e['titlu'] }}</h2>
+                <p><strong>Organizator:</strong> {{ e['organizator'] }}</p>
+                <p><strong>Locatie:</strong> {{ e['locatie'] }}</p>
+                <p><strong>Data:</strong> {{ e['data'] }}</p>
+                <p><strong>Locuri disponibile:</strong> {{ e['locuri_disponibile'] }}</p>
+            </div>
+            
+            <!-- Butoane actiuni -->
+            <div class="event-actions">
+                {% if session.get('username') %}
+                    <a href="{{ url_for('rezerva_loc', id=e['id']) }}" class="btn-reserve">Rezerva locuri</a>
+                {% endif %}
+                <a href="{{ url_for('detalii_eveniment', id=e['id']) }}" class="btn-details">Vezi detalii</a>
+                {% if session.get('rol') == 'admin' or session.get('username') == e['organizator'] %}
+                    <a href="{{ url_for('modifica_eveniment', id=e['id']) }}" class="btn-edit">Modifica</a>
+                    <a href="{{ url_for('sterge_eveniment', id=e['id']) }}" class="btn-delete" onclick="return confirm('Sigur vrei sa stergi acest eveniment?')">Sterge</a>
+                {% endif %}
+            </div>
+
+        </div>
+        {% else %}
+            <p>Nu exista evenimente disponibile.</p>
+        {% endfor %}
+    </div>
+
+</body>
+</html>

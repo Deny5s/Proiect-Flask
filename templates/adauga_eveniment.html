@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adauga Eveniment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='form_style.css') }}">
+</head>
+<body>
+
+    <!-- Meniu -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <h1>Manager Evenimente</h1>
+        </div>
+        <div class="nav-right">
+            <a href="{{ url_for('index') }}" class="btn-details">Inapoi</a>
+            {% if session.get('username') %}
+                <a href="{{ url_for('logout') }}" class="btn-logout">Logout</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>Adauga Eveniment</h2>
+        <form method="POST">
+            <label for="titlu">Titlu</label>
+            <input type="text" name="titlu" id="titlu" required>
+
+            <label for="locatie">Locatie</label>
+            <input type="text" name="locatie" id="locatie" required>
+
+            <label for="data">Data</label>
+            <input type="date" name="data" id="data" required>
+
+            <label for="locuri_disponibile">Locuri disponibile</label>
+            <input type="number" name="locuri_disponibile" id="locuri_disponibile" required>
+
+            <label for="poza">URL Poza</label>
+            <input type="url" name="poza" id="poza">
+
+            <label for="descriere">Descriere eveniment</label>
+            <textarea name="descriere" id="descriere" rows="5" required></textarea>
+
+            <button type="submit" class="btn-add">Adauga Eveniment</button>
+        </form>
+    </div>
+
+</body>
+</html>

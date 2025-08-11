@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ eveniment['titlu'] }} - Detalii</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='det_style.css') }}">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <h1>Manager Evenimente</h1>
+        </div>
+        <div class="nav-right">
+            {% if session.get('username') %}
+                <span>Bun venit, {{ session['username'] }}</span>
+                <a href="{{ url_for('logout') }}" class="btn-logout">Logout</a>
+            {% else %}
+                <a href="{{ url_for('login') }}" class="btn-login">Login</a>
+            {% endif %}
+            <a href="{{ url_for('index') }}" class="btn-details">Inapoi la lista</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="event-details-page">
+            <div class="event-header">
+                <img src="{{ eveniment['poza'] }}" alt="Imagine eveniment">
+                <div class="event-main-info">
+                    <h2>{{ eveniment['titlu'] }}</h2>
+                    <p><strong>Organizator:</strong> {{ eveniment['organizator'] }}</p>
+                    <p><strong>Locatie:</strong> {{ eveniment['locatie'] }}</p>
+                    <p><strong>Data:</strong> {{ eveniment['data'] }}</p>
+                    <p><strong>Locuri disponibile:</strong> {{ eveniment['locuri_disponibile'] }}</p>
+                </div>
+            </div>
+
+            <div class="event-story">
+                <h3>Descriere eveniment</h3>
+                <p>{{ eveniment['descriere'] }}</p>
+            </div>
+
+
+            {% if session.get('username') %}
+                <a href="{{ url_for('rezerva_loc', id=eveniment['id']) }}" class="btn-reserve">Rezerva locuri</a>
+            {% endif %}
+        </div>
+    </div>
+
+</body>
+</html>

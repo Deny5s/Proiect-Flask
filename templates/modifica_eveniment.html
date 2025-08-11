@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifica Eveniment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='form_style.css') }}">
+</head>
+<body>
+
+    <!-- Meniu -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <h1>Manager Evenimente</h1>
+        </div>
+        <div class="nav-right">
+            {% if session.get('username') %}
+                <span>Bun venit, {{ session['username'] }}</span>
+                <a href="{{ url_for('logout') }}" class="btn-logout">Logout</a>
+            {% else %}
+                <a href="{{ url_for('login') }}" class="btn-login">Login</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>Modifica eveniment</h2>
+        <form method="POST" class="form-event">
+            <label for="titlu">Titlu:</label>
+            <input type="text" name="titlu" id="titlu" value="{{ eveniment['titlu'] }}" required>
+
+            <label for="locatie">Locatie:</label>
+            <input type="text" name="locatie" id="locatie" value="{{ eveniment['locatie'] }}" required>
+
+            <label for="data">Data:</label>
+            <input type="date" name="data" id="data" value="{{ eveniment['data'] }}" required>
+
+            <label for="locuri_disponibile">Locuri disponibile:</label>
+            <input type="number" name="locuri_disponibile" id="locuri_disponibile" value="{{ eveniment['locuri_disponibile'] }}" min="1" required>
+
+            <label for="poza">Link poza:</label>
+            <input type="url" name="poza" id="poza" value="{{ eveniment['poza'] }}">
+
+            <button type="submit" class="btn-edit">Salveaza modificarile</button>
+        </form>
+        <a href="{{ url_for('index') }}" class="btn-details" style="margin-top:15px; display:inline-block;">Inapoi la lista</a>
+    </div>
+
+</body>
+</html>

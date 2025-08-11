@@ -1,0 +1,90 @@
+body {
+    font-family: 'Georgia', serif;
+    margin: 0;
+    background-color: #f8f1e9;
+}
+
+.navbar {
+    background-color: #3a2e25;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin-left: 10px;
+    padding: 6px 12px;
+    border-radius: 6px;
+}
+
+.btn-login { background-color: #5e4c3d; }
+.btn-logout { background-color: #a94442; }
+.btn-add { background-color: #4caf50; }
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+}
+
+/* Card eveniment */
+.event-card {
+    display: flex;
+    background: #fff;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Imaginea evenimentului */
+.event-image {
+    width: 200px;
+    height: auto;
+}
+
+/* Zona detalii */
+.event-details {
+    padding: 20px;
+    flex: 1;
+}
+
+.event-details h2 {
+    margin-top: 0;
+}
+
+/* Card butoane */
+.event-actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 15px;
+    gap: 10px;
+    background-color: #f2ede8;
+    border-left: 1px solid #ddd;
+    min-width: 140px;
+}
+
+/* Butoane */
+.event-actions a {
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    transition: background 0.2s;
+}
+
+.btn-details { background-color: #2f3e46; }
+.btn-reserve { background-color: #007bff; }
+.btn-edit { background-color: #ffa500; }
+.btn-delete { background-color: #dc3545; }
+
+/* Hover efect */
+.event-actions a:hover {
+    opacity: 0.9;
+}
